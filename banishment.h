@@ -1,0 +1,6 @@
+#ifndef AFFLUENCE_BANISHMENT_BANISHMENT_H_
+#define AFFLUENCE_BANISHMENT_BANISHMENT_H_
+
+int banish(const char *path);
+
+#endif /* AFFLUENCE_BANISHMENT_BANISHMENT_H_ */
