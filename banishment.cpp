@@ -9,6 +9,9 @@
 
 //NOTICE: This function is inherintly racey. Make sure that nothing is touching what is being unmounted.
 static int banish_once(const char *path) {
+	//FIXME: This line. Rethink things and make sure that it really should be here. Right now, it merely serves as a hack. For example, should it have MNT_DETACH?
+	umount2(path,UMOUNT_NOFOLLOW);
+	
 	struct stat pathinfo;
 	lstat(path,&pathinfo);
 	
@@ -38,7 +41,7 @@ static int banish_once(const char *path) {
 		}
 	}
 	
-	return umount2(path,MNT_DETACH);
+	return umount2(path,MNT_DETACH|UMOUNT_NOFOLLOW);
 }
 
 int banish(const char *path) {
